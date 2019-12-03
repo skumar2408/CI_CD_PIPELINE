@@ -19,7 +19,7 @@ pipeline {
             		steps {
                 		kubernetesDeploy(
                     			kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
-                    			configs: 'auth-deploy.yml'
+                    			configs: 'web-deploy.yml'
                 		)
        }
  }
