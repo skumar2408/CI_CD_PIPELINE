@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: web-deployment
+    labels:
+       app: web-app
+spec:
+    replicas: 3
+    selector:
+       matchLabels:
+           app: web-app
+    template:
+       metadata:
+           labels:
+             app: web-app
+       spec:
+            containers:
+            - name: web-controller
+              image: skumar24/web:$BUILD_NUMBER
+              ports:
+              - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+     name: web-svc
+     labels:
+        app: web-app
+spec:
+    selector:
+        app: web-app
+    type: NodePort
+    ports:
+    - nodePort: 31160
+      port: 80
+      targetPort: 80
