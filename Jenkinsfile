@@ -18,7 +18,7 @@ pipeline {
        stage('DeployToProduction'){
             		steps {
                 		kubernetesDeploy(
-                    			kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+                    			kubeconfigId: 'config_file',
                     			configs: 'web-deploy.yml'
                 		)
        }
